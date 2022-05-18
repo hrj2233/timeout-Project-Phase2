@@ -26,8 +26,22 @@ console.log(timeoutObject); // Timeout { ... }
 
 function dynamicIntervalCount(cb, delay, amount) {
   // Your code here
+  let interval = setInterval(cb, delay);
+  if (amount !== undefined) {
+    debugger;
+    setTimeout(() => {
+      clearInterval(interval);
+    }, delay + delay * amount);
+  }
+  return interval;
 }
-
+dynamicIntervalCount(
+  function () {
+    console.log("hi");
+  },
+  500,
+  3
+); // prints 'hi' at 500ms intervals a total of 3 times
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
   module.exports = dynamicIntervalCount;
